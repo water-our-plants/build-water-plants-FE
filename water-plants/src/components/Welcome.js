@@ -4,7 +4,8 @@ const Welcome = props => {
   return (
     <div>
       <h3>Welcome to Water My Plants</h3>
-      <p>placholder text</p>
+      <p>placeholder text</p>
+      <p>placeholder text</p>
     </div>
   );
 };
