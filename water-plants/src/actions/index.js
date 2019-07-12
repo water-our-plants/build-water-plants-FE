@@ -10,7 +10,7 @@ export const login = creds => dispatch => {
   return axios
     .post('https://be-water-my-plants.herokuapp.com/api/login', creds)
     .then(res => {
-      console.log(res);
+      localStorage.setItem('token', res.data.payload);
       dispatch({ type: LOGIN_SUCCESS });
     })
     .catch(err => {
