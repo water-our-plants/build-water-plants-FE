@@ -12,8 +12,7 @@ export const registerUser = ({ username, password, phoneNumber }) => {
       .post(`https://be-water-my-plants.herokuapp.com/api/register`, {
         username,
         password,
-        phoneNumber,
-        completed: false
+        phoneNumber
       })
       .then(res => {
         dispatch(registerUserSuccess(res.data));
