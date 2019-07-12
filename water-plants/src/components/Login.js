@@ -32,8 +32,8 @@ class Login extends React.Component {
       <div className='login-page'>
         <h1>Login</h1>
         <h3>Please use this login info</h3>
-        <p>username: kgamel</p>
-        <p>password: admin12</p>
+        <p>username: krgamel</p>
+        <p>password: admin1234</p>
         <form onSubmit={this.handleLogin}>
           <input
             name='username'
