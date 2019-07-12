@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { connect } from 'react-redux';
 import Login from './Login';
+import plantsPlaceholder from './plantsPlaceholder';
 import { Route, NavLink } from 'react-router-dom';
 
 class App extends Component {
@@ -20,7 +21,9 @@ class App extends Component {
             <NavLink to='/plants'>Plants</NavLink>
           </ul>
         </div>
+        <div clasName='body' />
         <Route path='/login' component={Login} />
+        <Route path='/plants' component={plantsPlaceholder} />
       </div>
     );
   }
