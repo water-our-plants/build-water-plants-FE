@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import "./App.css";
 import { connect } from "react-redux";
+import { Route, NavLink } from "react-router-dom";
 import Login from "./Login";
 import Register from "./Register";
-import { Route, NavLink } from "react-router-dom";
+import plantsPlaceholder from "./plantsPlaceholder";
+import PrivateRoute from "./PrivateRoute";
+import Welcome from "./Welcome";
 
 class App extends Component {
   render() {
@@ -21,8 +24,11 @@ class App extends Component {
             <NavLink to="/plants">Plants</NavLink>
           </ul>
         </div>
+        <div clasName="body" />
+        <Route exact path="/" component={Welcome} />
         <Route path="/login" component={Login} />
-        <Route path="/register" component={Register} />
+        <Route exact path="/register" component={Register} />
+        <PrivateRoute path="/plants" component={plantsPlaceholder} />
       </div>
     );
   }

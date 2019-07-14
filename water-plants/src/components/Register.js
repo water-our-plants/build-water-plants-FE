@@ -7,7 +7,7 @@ import { registerUser } from "../actions";
 
 const Register = props => {
   const createUser = e => {
-    props.registerUser({username: "testUser", password: "password1", phoneNumber: 1234567890});
+    props.registerUser({username: "testUser2", password: "password1", phoneNumber: 1234567890});
   }
   return (
     <>
