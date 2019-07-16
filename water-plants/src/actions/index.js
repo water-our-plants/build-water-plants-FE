@@ -19,29 +19,20 @@ export const GET_PLANTS_FAIL = 'GET_PLANTS_FAIL';
 
 export const registerUser = registration => dispatch => {
   dispatch({ type: REGISTER_USER_START });
-  return (
-    
-    axios
-      .post(`https://be-water-my-plants.herokuapp.com/api/register`,
-        registration)
-      .then(res => {
-        console.log(res);
-        dispatch(
-          { type: REGISTER_USER_SUCCESS,
-           payload: res.data
-          }
-        );
-      })
-      .catch(err => {
-        console.log(err);
-        dispatch({ type: REGISTER_USER_FAIL,
-                  payload: err.response.data.message
-                 });
-      })
-  )
+  return axios
+    .post(`https://be-water-my-plants.herokuapp.com/api/register`, registration)
+    .then(res => {
+      console.log(res);
+      dispatch({ type: REGISTER_USER_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      console.log(err);
+      dispatch({
+        type: REGISTER_USER_FAIL,
+        payload: err.response.data.message
+      });
+    });
 };
-
-
 
 export const login = creds => dispatch => {
   dispatch({ type: LOGIN_START });
@@ -74,10 +65,10 @@ export const addPlant = (e, userId, newPlant) => dispatch => {
     });
 };
 
-export const getPlants = username => dispatch => {
+export const getPlants = userId => dispatch => {
   dispatch({ type: GET_PLANTS_START });
   axiosWithAuth()
-    .get(`https://be-water-my-plants.herokuapp.com/api/getPlants/${username}`)
+    .get(`https://be-water-my-plants.herokuapp.com/api/getPlants/${userId}`)
     .then(res => {
       console.log(res);
       dispatch({ type: GET_PLANTS_SUCCESS, payload: res.data });

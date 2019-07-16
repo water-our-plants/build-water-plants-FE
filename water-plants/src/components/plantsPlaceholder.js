@@ -5,7 +5,7 @@ import PlantForm from '../components/PlantForm';
 
 class plantsPlaceholder extends React.Component {
   componentDidMount() {
-    this.props.getPlants(this.props.username);
+    this.props.getPlants(this.props.userId);
   }
 
   render() {
