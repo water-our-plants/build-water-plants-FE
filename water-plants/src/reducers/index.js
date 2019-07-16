@@ -7,10 +7,14 @@ import {
   REGISTER_USER_SUCCESS,
   ADD_PLANT_START,
   ADD_PLANT_SUCCESS,
-  ADD_PLANT_FAIL
+  ADD_PLANT_FAIL,
+  GET_PLANTS_START,
+  GET_PLANTS_SUCCESS,
+  GET_PLANTS_FAIL
 } from '../actions';
 
 const initialState = {
+  username: '',
   plants: [],
   loggingIn: false,
   fetchingPlants: false,
@@ -34,7 +38,8 @@ const rootReducer = (state = initialState, action) => {
     case LOGIN_SUCCESS: {
       return {
         ...state,
-        loggingIn: false
+        loggingIn: false,
+        username: action.payload
       };
     }
     case LOGIN_FAILURE: {
@@ -62,6 +67,26 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: true
+      };
+    }
+    case GET_PLANTS_START: {
+      return {
+        ...state,
+        fetchingPlants: true
+      };
+    }
+    case GET_PLANTS_SUCCESS: {
+      return {
+        ...state,
+        fetchingPlants: false,
+        plants: action.payload
+      };
+    }
+    case GET_PLANTS_FAIL: {
+      return {
+        ...state,
+        fetchingPlants: false,
+        error: action.payload
       };
     }
     default:

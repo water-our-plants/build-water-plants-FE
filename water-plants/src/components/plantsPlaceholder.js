@@ -1,7 +1,26 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { getPlants } from '../actions';
+import PlantForm from '../components/PlantForm';
 
-const plantsPlaceholder = props => {
-  return <div>PLANTS PLACEHOLDER</div>;
-};
+class plantsPlaceholder extends React.Component {
+  componentDidMount() {
+    this.props.getPlants(this.props.username);
+  }
 
-export default plantsPlaceholder;
+  render() {
+    return (
+      <div className="plants-page">
+        <h3>Welcome to your Plants Page</h3>
+        <PlantForm />
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = ({ plants, username }) => ({ plants, username });
+
+export default connect(
+  mapStateToProps,
+  { getPlants }
+)(plantsPlaceholder);
