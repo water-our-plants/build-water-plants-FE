@@ -7,13 +7,29 @@ import Register from './Register';
 import plantsPlaceholder from './plantsPlaceholder';
 import PrivateRoute from './PrivateRoute';
 import Welcome from './Welcome';
+import styled from 'styled-components';
+
+const NavBar = styled.div`
+display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  border-bottom: 2px solid darkgrey;
+  padding-right: 5%;
+
+  a {
+    text-decoration: none;
+  color: black;
+  }
+  `;
+ 
+  
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <h1>Water My Plants</h1>
-        <div className="nav-bar">
+        <NavBar>
           <ul>
             <NavLink to="/login">Login</NavLink>
           </ul>
@@ -23,7 +39,7 @@ class App extends Component {
           <ul>
             <NavLink to="/plants">Plants</NavLink>
           </ul>
-        </div>
+        </NavBar>
         <div clasName="body" />
         <Route exact path="/" component={Welcome} />
         <Route path="/login" component={Login} />
