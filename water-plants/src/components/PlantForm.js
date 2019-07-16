@@ -1,5 +1,4 @@
 import React from 'react';
-import { throwStatement } from '@babel/types';
 
 class PlantForm extends React.Component {
   constructor(props) {
@@ -19,22 +18,22 @@ class PlantForm extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const { name, description, lastWater, nextWater } = this.state;
-    const id = Date.now();
-    const newPlant = { name, description, lastWater, nextWater, id };
-    this.props.addPlant(e, newPlant);
+    const { name, description, lastWater } = this.state;
+
+    const userId = this.props.userId;
+    const newPlant = { name, description, lastWater, userId };
+    this.props.addPlant(e, userId, newPlant);
     this.setState({
       name: '',
       description: '',
-      lastWater: '',
-      nextWater: ''
+      lastWater: ''
     });
   };
 
   render() {
     return (
       <div className="plant-form">
-        <form onSubmit={this.handleSubmit}>
+        <form>
           <input
             onChange={this.handleChange}
             placeholder="Name..."
@@ -56,14 +55,15 @@ class PlantForm extends React.Component {
             name="lastWater"
             type="date"
           />
-          <input
+          {/* <input
             onChange={this.handleChange}
             placeholder="Water Next..."
             value={this.state.nextWater}
             name="nextWater"
             type="date"
-          />
+          /> */}
         </form>
+        <button onClick={this.handleSubmit}>Add Plant</button>
       </div>
     );
   }

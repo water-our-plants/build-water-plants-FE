@@ -14,7 +14,7 @@ import {
 } from '../actions';
 
 const initialState = {
-  username: '',
+  userId: '',
   plants: [],
   loggingIn: false,
   fetchingPlants: false,
@@ -39,7 +39,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         loggingIn: false,
-        username: action.payload
+        userId: action.payload
       };
     }
     case LOGIN_FAILURE: {
@@ -86,6 +86,27 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingPlants: false,
+        error: action.payload
+      };
+    }
+    case ADD_PLANT_START: {
+      return {
+        ...state,
+        addingPlant: true,
+        error: ''
+      };
+    }
+    case ADD_PLANT_SUCCESS: {
+      return {
+        ...state,
+        addingPlant: false,
+        plants: action.payload
+      };
+    }
+    case ADD_PLANT_FAIL: {
+      return {
+        ...state,
+        addingPlant: false,
         error: action.payload
       };
     }

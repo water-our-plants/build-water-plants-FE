@@ -61,7 +61,7 @@ export const login = creds => dispatch => {
     .then(res => {
       console.log(res);
       localStorage.setItem('token', res.data.token);
-      dispatch({ type: LOGIN_SUCCESS, payload: creds.username });
+      dispatch({ type: LOGIN_SUCCESS, payload: res.data.id });
     })
     .catch(err => {
       console.log(err);
@@ -69,12 +69,21 @@ export const login = creds => dispatch => {
     });
 };
 
-// export const addPlant = (e, newPlant) => dispatch => {
-//   e.preventDefault();
-//   dispatch({ type: ADD_PLANT_START });
-//   return axiosWithAuth()
-//     .post()
-// }
+export const addPlant = (e, userId, newPlant) => dispatch => {
+  e.preventDefault();
+  dispatch({ type: ADD_PLANT_START });
+  return axiosWithAuth()
+    .post(
+      `https://be-water-my-plants.herokuapp.com/api/addPlants/${userId}`,
+      newPlant
+    )
+    .then(res => {
+      dispatch({ type: ADD_PLANT_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: ADD_PLANT_FAIL, payload: err.response });
+    });
+};
 
 export const getPlants = username => dispatch => {
   dispatch({ type: GET_PLANTS_START });
@@ -85,7 +94,7 @@ export const getPlants = username => dispatch => {
       dispatch({ type: GET_PLANTS_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      console.log(err.response);
+      console.log(err);
       dispatch({ type: GET_PLANTS_FAIL, payload: err.response });
     });
 };
