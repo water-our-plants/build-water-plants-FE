@@ -4,10 +4,17 @@ import {
   LOGIN_FAILURE,
   REGISTER_USER_START,
   REGISTER_USER_FAIL,
-  REGISTER_USER_SUCCESS
-} from "../actions";
+  REGISTER_USER_SUCCESS,
+  ADD_PLANT_START,
+  ADD_PLANT_SUCCESS,
+  ADD_PLANT_FAIL,
+  GET_PLANTS_START,
+  GET_PLANTS_SUCCESS,
+  GET_PLANTS_FAIL
+} from '../actions';
 
 const initialState = {
+  userId: '',
   plants: [],
   loggingIn: false,
   fetchingPlants: false,
@@ -25,13 +32,14 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         loggingIn: true,
-        error: ""
+        error: ''
       };
     }
     case LOGIN_SUCCESS: {
       return {
         ...state,
-        loggingIn: false
+        loggingIn: false,
+        userId: action.payload
       };
     }
     case LOGIN_FAILURE: {
@@ -59,6 +67,47 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: true
+      };
+    }
+    case GET_PLANTS_START: {
+      return {
+        ...state,
+        fetchingPlants: true
+      };
+    }
+    case GET_PLANTS_SUCCESS: {
+      return {
+        ...state,
+        fetchingPlants: false,
+        plants: action.payload
+      };
+    }
+    case GET_PLANTS_FAIL: {
+      return {
+        ...state,
+        fetchingPlants: false,
+        error: action.payload
+      };
+    }
+    case ADD_PLANT_START: {
+      return {
+        ...state,
+        addingPlant: true,
+        error: ''
+      };
+    }
+    case ADD_PLANT_SUCCESS: {
+      return {
+        ...state,
+        addingPlant: false,
+        plants: action.payload
+      };
+    }
+    case ADD_PLANT_FAIL: {
+      return {
+        ...state,
+        addingPlant: false,
+        error: action.payload
       };
     }
     default:

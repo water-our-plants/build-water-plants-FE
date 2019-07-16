@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import "./App.css";
-import { connect } from "react-redux";
-import { Route, NavLink } from "react-router-dom";
-import Login from "./Login";
-import Register from "./Register";
-import plantsPlaceholder from "./plantsPlaceholder";
-import PrivateRoute from "./PrivateRoute";
-import Welcome from "./Welcome";
+import React, { Component } from 'react';
+import './App.css';
+import { connect } from 'react-redux';
+import { Route, NavLink } from 'react-router-dom';
+import Login from './Login';
+import Register from './Register';
+import plantsPlaceholder from './plantsPlaceholder';
+import PrivateRoute from './PrivateRoute';
+import Welcome from './Welcome';
 
 class App extends Component {
   render() {
@@ -34,8 +34,9 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({ plants }) => ({
-  plants
+const mapStateToProps = ({ plants, username }) => ({
+  plants,
+  username
 });
 
 export default connect(
