@@ -17,42 +17,31 @@ export const GET_PLANTS_START = 'GET_PLANTS_START';
 export const GET_PLANTS_SUCCESS = 'GET_PLANTS_SUCCESS';
 export const GET_PLANTS_FAIL = 'GET_PLANTS_FAIL';
 
-export const registerUser = ({ username, password, phoneNumber }) => {
-  return dispatch => {
-    dispatch(registerUserStart());
-
+export const registerUser = registration => dispatch => {
+  dispatch({ type: REGISTER_USER_START });
+  return (
+    
     axios
-      .post(`https://be-water-my-plants.herokuapp.com/api/register`, {
-        username,
-        password,
-        phoneNumber
-      })
+      .post(`https://be-water-my-plants.herokuapp.com/api/register`,
+        registration)
       .then(res => {
-        dispatch(registerUserSuccess(res.data));
+        console.log(res);
+        dispatch(
+          { type: REGISTER_USER_SUCCESS,
+           payload: res.data
+          }
+        );
       })
       .catch(err => {
-        dispatch(registerUserFail(err.message));
-      });
-  };
+        console.log(err);
+        dispatch({ type: REGISTER_USER_FAIL,
+                  payload: err.response.data.message
+                 });
+      })
+  )
 };
 
-const registerUserSuccess = user => ({
-  type: REGISTER_USER_SUCCESS,
-  payload: {
-    ...user
-  }
-});
 
-const registerUserStart = () => ({
-  type: REGISTER_USER_START
-});
-
-const registerUserFail = error => ({
-  type: REGISTER_USER_FAIL,
-  payload: {
-    error
-  }
-});
 
 export const login = creds => dispatch => {
   dispatch({ type: LOGIN_START });

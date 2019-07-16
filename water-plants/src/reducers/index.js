@@ -53,7 +53,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        users: action.payload
+        user: action.payload
       };
     }
     case REGISTER_USER_FAIL: {
