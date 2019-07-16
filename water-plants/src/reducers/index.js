@@ -4,8 +4,11 @@ import {
   LOGIN_FAILURE,
   REGISTER_USER_START,
   REGISTER_USER_FAIL,
-  REGISTER_USER_SUCCESS
-} from "../actions";
+  REGISTER_USER_SUCCESS,
+  ADD_PLANT_START,
+  ADD_PLANT_SUCCESS,
+  ADD_PLANT_FAIL
+} from '../actions';
 
 const initialState = {
   plants: [],
@@ -25,7 +28,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         loggingIn: true,
-        error: ""
+        error: ''
       };
     }
     case LOGIN_SUCCESS: {
