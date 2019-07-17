@@ -1,6 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { login } from '../actions';
+import styled from 'styled-components';
+
+const LoginDiv = styled.div`
+border: 1px solid black;
+border-radius: 5px;
+margin: 20px 200px;
+padding-bottom: 21px;
+`;
 
 class Login extends React.Component {
   state = {
@@ -29,7 +37,7 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div className='login-page'>
+      <LoginDiv>
         <h1>Login</h1>
         <h3>Please use this login info</h3>
         <p>username: krgamel</p>
@@ -51,7 +59,7 @@ class Login extends React.Component {
           />
           <button onClick={this.handleLogin}>Sign In!</button>
         </form>
-      </div>
+      </LoginDiv>
     );
   }
 }

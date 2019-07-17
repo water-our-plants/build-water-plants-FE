@@ -32,15 +32,15 @@
   }
 }
 
-.nav-bar {
+/* .nav-bar {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   border-bottom: 2px solid darkgrey;
   padding-right: 5%;
-}
+} */
 
-.nav-bar ul a {
+/* .nav-bar ul a {
   text-decoration: none;
   color: black;
-}
+} */
