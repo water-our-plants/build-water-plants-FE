@@ -10,7 +10,7 @@ import Welcome from './Welcome';
 import styled from 'styled-components';
 
 const NavBar = styled.div`
-display: flex;
+  display: flex;
   flex-direction: row;
   justify-content: flex-end;
   border-bottom: 2px solid darkgrey;
@@ -18,11 +18,9 @@ display: flex;
 
   a {
     text-decoration: none;
-  color: black;
+    color: black;
   }
-  `;
- 
-  
+`;
 
 class App extends Component {
   render() {
@@ -40,7 +38,7 @@ class App extends Component {
             <NavLink to="/plants">Plants</NavLink>
           </ul>
         </NavBar>
-        <div clasName="body" />
+        <div className="body" />
         <Route exact path="/" component={Welcome} />
         <Route path="/login" component={Login} />
         <Route exact path="/register" component={Register} />

@@ -10,7 +10,10 @@ import {
   ADD_PLANT_FAIL,
   GET_PLANTS_START,
   GET_PLANTS_SUCCESS,
-  GET_PLANTS_FAIL
+  GET_PLANTS_FAIL,
+  DEL_PLANT_START,
+  DEL_PLANT_SUCCESS,
+  DEL_PLANT_FAIL
 } from '../actions';
 
 const initialState = {
@@ -107,6 +110,27 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         addingPlant: false,
+        error: action.payload
+      };
+    }
+    case DEL_PLANT_START: {
+      return {
+        ...state,
+        deletingPlant: true,
+        error: ''
+      };
+    }
+    case DEL_PLANT_SUCCESS: {
+      return {
+        ...state,
+        deletingPlant: false,
+        plants: action.payload
+      };
+    }
+    case DEL_PLANT_FAIL: {
+      return {
+        ...state,
+        deletingPlant: false,
         error: action.payload
       };
     }
