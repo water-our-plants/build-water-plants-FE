@@ -40,6 +40,8 @@ export const registerUser = registration => dispatch => {
 
 export const login = creds => dispatch => {
   dispatch({ type: LOGIN_START });
+  localStorage.removeItem('token');
+  localStorage.removeItem('userId');
   return axios
     .post('https://be-water-my-plants.herokuapp.com/api/login', creds)
     .then(res => {
