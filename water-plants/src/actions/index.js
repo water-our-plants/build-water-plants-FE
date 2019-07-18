@@ -112,7 +112,7 @@ export const delPlant = (plantId, userId) => dispatch => {
 export const updateSchedule = (userId, updatePlant) => dispatch => {
   dispatch({ type: UPD_SCHED_START });
   axiosWithAuth()
-    .post(
+    .put(
       `https://be-water-my-plants.herokuapp.com/api/editPlants/${userId}`,
       updatePlant
     )
