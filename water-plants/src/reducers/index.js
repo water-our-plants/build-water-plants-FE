@@ -11,10 +11,10 @@ import {
   GET_PLANTS_START,
   GET_PLANTS_SUCCESS,
   GET_PLANTS_FAIL
-} from '../actions';
+} from "../actions";
 
 const initialState = {
-  userId: '',
+  userId: "",
   plants: [],
   loggingIn: false,
   fetchingPlants: false,
@@ -32,14 +32,15 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         loggingIn: true,
-        error: ''
+        error: ""
       };
     }
     case LOGIN_SUCCESS: {
       return {
         ...state,
         loggingIn: false,
-        userId: action.payload
+        userId: action.payload.id,
+        user: action.payload
       };
     }
     case LOGIN_FAILURE: {
@@ -93,7 +94,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         addingPlant: true,
-        error: ''
+        error: ""
       };
     }
     case ADD_PLANT_SUCCESS: {

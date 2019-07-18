@@ -9,6 +9,10 @@ export const REGISTER_USER_START = 'REGISTER_USER_START';
 export const REGISTER_USER_SUCCESS = 'REGISTER_USER_SUCCESS';
 export const REGISTER_USER_FAIL = 'REGISTER_USER_FAIL';
 
+export const EDIT_USER_START = 'EDIT_USER_START';
+export const EDIT_USER_SUCCESS = 'EDIT_USER_SUCCESS';
+export const EDIT_USER_FAIL = 'EDIT_USER_FAIL';
+
 export const ADD_PLANT_START = 'ADD_PLANT_START';
 export const ADD_PLANT_SUCCESS = 'ADD_PLANT_SUCCESS';
 export const ADD_PLANT_FAIL = 'ADD_PLANT_FAIL';
@@ -34,14 +38,31 @@ export const registerUser = registration => dispatch => {
     });
 };
 
+export const editUser = user => dispatch => {
+  dispatch({ type: EDIT_USER_START });
+  return axios
+    .put(`https://be-water-my-plants.herokuapp.com/api/editUser/${user.id}`, user)
+    .then(res => {
+      console.log(res);
+      dispatch({ type: EDIT_USER_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      console.log(err);
+      dispatch({
+        type: EDIT_USER_FAIL,
+        payload: err.response.data.message
+      });
+    });
+};
+
 export const login = creds => dispatch => {
   dispatch({ type: LOGIN_START });
   return axios
     .post('https://be-water-my-plants.herokuapp.com/api/login', creds)
     .then(res => {
-      console.log(res);
+      console.log("login returned:", res);
       localStorage.setItem('token', res.data.token);
-      dispatch({ type: LOGIN_SUCCESS, payload: res.data.id });
+      dispatch({ type: LOGIN_SUCCESS, payload: res.data });
     })
     .catch(err => {
       console.log(err);
