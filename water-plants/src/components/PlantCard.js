@@ -19,9 +19,15 @@ const ButtonWrapper = styled.div`
 
 const Dates = styled.div`
   margin: 10px;
+  height: 45px;
   p {
     margin: 0;
   }
+`;
+
+const FormColumn = styled.form`
+  display: flex;
+  flex-direction: column;
 `;
 
 class PlantCard extends React.Component {
@@ -79,7 +85,7 @@ class PlantCard extends React.Component {
 
         {this.state.isUpdating ? (
           <Dates>
-            <form>
+            <FormColumn>
               <label>Reminder</label>
               <input
                 onChange={this.handleChange}
@@ -88,16 +94,14 @@ class PlantCard extends React.Component {
                 name="watering_time"
                 type="date"
               />
-            </form>
+            </FormColumn>
           </Dates>
         ) : (
-          <div>
-            <Dates>
-              <p>Watering Reminder:</p>
+          <Dates>
+            <p>Watering Reminder:</p>
 
-              <p>{this.props.plant.watering_time}</p>
-            </Dates>
-          </div>
+            <p>{this.props.plant.watering_time}</p>
+          </Dates>
         )}
 
         <ButtonWrapper>
