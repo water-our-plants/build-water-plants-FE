@@ -28,7 +28,6 @@ const initialState = {
   updatingUser: false,
   deletingPlant: false,
   deletingSchedule: false,
-  schedule: [],
   error: null,
   user: {},
   isLoading: false
