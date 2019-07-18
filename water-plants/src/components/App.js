@@ -1,13 +1,28 @@
-import React, { Component } from "react";
-import "./App.css";
-import { connect } from "react-redux";
-import { Route, NavLink } from "react-router-dom";
-import Login from "./Login";
-import Register from "./Register";
+
+import React, { Component } from 'react';
+import './App.css';
+import { connect } from 'react-redux';
+import { Route, NavLink } from 'react-router-dom';
+import Login from './Login';
+import Register from './Register';
 import EditUser from "./EditUser";
-import plantsPlaceholder from "./plantsPlaceholder";
-import PrivateRoute from "./PrivateRoute";
-import Welcome from "./Welcome";
+import plantsPlaceholder from './plantsPlaceholder';
+import PrivateRoute from './PrivateRoute';
+import Welcome from './Welcome';
+import styled from 'styled-components';
+
+const NavBar = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  border-bottom: 2px solid darkgrey;
+  padding-right: 5%;
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+`;
 
 class App extends Component {
   render() {
@@ -15,7 +30,7 @@ class App extends Component {
       <div className="App">
         <h1>Water My Plants</h1>
         <h2>{this.props.user.message ? this.props.user.message : ""}</h2>
-        <div className="nav-bar">
+        <NavBar>
           <ul>
             {!this.props.userId && <NavLink to="/login">Login</NavLink>}
           </ul>
@@ -29,8 +44,8 @@ class App extends Component {
           <ul>
             {this.props.userId && <NavLink to="/profile">Edit Profile</NavLink>}
           </ul>
-        </div>
-        <div clasName="body" />
+        </NavBar>
+        <div className="body" />
         <Route exact path="/" component={Welcome} />
         <Route path="/login" component={Login} />
          <Route exact path="/register" component={Register} />
