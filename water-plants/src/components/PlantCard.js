@@ -33,7 +33,7 @@ const PlantCard = props => {
       <ul>Last Watered: {props.plant.lastWater}</ul>
       <ul>Watering Reminder: {props.plant.watering_time} </ul>
       <ButtonWrapper>
-        {/* <button>Schedule</button> */}
+        <button>Schedule</button>
         <button
           onClick={e =>
             window.confirm('Are you sure you wish to delete the plant?') &&
