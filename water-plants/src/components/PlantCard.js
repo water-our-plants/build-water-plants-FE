@@ -52,7 +52,8 @@ class PlantCard extends React.Component {
       description,
       lastWater,
       smsDelivered,
-      userId
+      userId,
+      id
     } = this.props.plant;
     const updatePlant = {
       name,
@@ -60,9 +61,10 @@ class PlantCard extends React.Component {
       watering_time,
       smsDelivered,
       lastWater,
-      userId
+      id
     };
-    this.props.updatePlant(e, userId, updatePlant);
+    this.props.updateSchedule(userId, updatePlant);
+    this.updateToggle();
   };
 
   render() {
@@ -78,7 +80,7 @@ class PlantCard extends React.Component {
         {this.state.isUpdating ? (
           <Dates>
             <form>
-              <label for="watering_time">Reminder</label>
+              <label>Reminder</label>
               <input
                 onChange={this.handleChange}
                 placeholder="Water Next..."
@@ -107,8 +109,11 @@ class PlantCard extends React.Component {
           >
             Delete
           </button>
-
-          <button onClick={() => this.updateToggle()}>Update</button>
+          {this.state.isUpdating ? (
+            <button onClick={this.handleUpdate}>Supdate</button>
+          ) : (
+            <button onClick={() => this.updateToggle()}>Update</button>
+          )}
         </ButtonWrapper>
       </PlantDiv>
     );
