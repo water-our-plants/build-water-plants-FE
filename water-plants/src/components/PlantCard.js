@@ -1,21 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
+import Schedule from './Schedule';
 
 const PlantDiv = styled.div`
   border: 1px solid black;
   border-radius: 10px;
   width: 30%;
 `;
-
-const ButtonWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-
-  button {
-    margin: 10px 20px;
-  }
+const Dates = styled.p`
+  margin: 0;
 `;
+// const ButtonWrapper = styled.div`
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: center;
+
+//   button {
+//     margin: 10px 20px;
+//   }
+// `;
 
 const PlantCard = props => {
   const userId = localStorage.getItem('userId');
@@ -30,9 +33,11 @@ const PlantCard = props => {
     <PlantDiv>
       <h4>{props.plant.name}</h4>
       <p>{props.plant.description}</p>
-      <ul>Last Watered: {props.plant.lastWater}</ul>
-      <ul>Watering Reminder: {props.plant.watering_time} </ul>
-      <ButtonWrapper>
+      <Dates>Last Watered:</Dates>
+      <Dates> {props.plant.lastWater}</Dates>
+      {/* <ul>Watering Reminder: {props.plant.watering_time} </ul> */}
+      <Schedule plant={props.plant} />
+      {/* <ButtonWrapper>
         <button>Schedule</button>
         <button
           onClick={e =>
@@ -42,7 +47,8 @@ const PlantCard = props => {
         >
           Delete
         </button>
-      </ButtonWrapper>
+        <button onClick={() => props.getWaterDays(user)}>Update</button>
+      </ButtonWrapper> */}
     </PlantDiv>
   );
 };
