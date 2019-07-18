@@ -27,10 +27,14 @@ export const UPD_SCHED_FAIL = 'UPD_SCHED_FAIL';
 
 export const registerUser = registration => dispatch => {
   dispatch({ type: REGISTER_USER_START });
+  localStorage.removeItem('token');
+  localStorage.removeItem('userId');
   return axios
     .post(`https://be-water-my-plants.herokuapp.com/api/register`, registration)
     .then(res => {
       console.log(res);
+      localStorage.setItem('token', res.data.token);
+      localStorage.setItem('userId', res.data.id);
       dispatch({ type: REGISTER_USER_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -100,7 +104,7 @@ export const delPlant = (plantId, userId) => dispatch => {
     )
     .then(res => {
       console.log('delete successful');
-      console.log(userId);
+      console.log(res);
       dispatch({ type: DEL_PLANT_SUCCESS, payload: res.data });
     })
     .catch(err => {
