@@ -1,6 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const PlantDiv = styled.div`
+  border: 1px solid black;
+  border-radius: 10px;
+  width: 30%;
+`;
+
 const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -39,9 +45,36 @@ class Schedule extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  handleUpdate = e => {
+    const { watering_time } = this.state;
+    const {
+      name,
+      description,
+      lastWater,
+      smsDelivered,
+      userId
+    } = this.props.plant;
+    const updatePlant = {
+      name,
+      description,
+      watering_time,
+      smsDelivered,
+      lastWater,
+      userId
+    };
+    this.props.updatePlant(e, userId, updatePlant);
+  };
+
   render() {
     return (
-      <div>
+      <PlantDiv>
+        <h4>{this.props.plant.name}</h4>
+        <p>{this.props.plant.description}</p>
+        <Dates>
+          <p>Last Watered:</p>
+          <p>{this.props.plant.lastWater}</p>
+        </Dates>
+
         {this.state.isUpdating ? (
           <Dates>
             <form>
@@ -77,7 +110,7 @@ class Schedule extends React.Component {
 
           <button onClick={() => this.updateToggle()}>Update</button>
         </ButtonWrapper>
-      </div>
+      </PlantDiv>
     );
   }
 }
