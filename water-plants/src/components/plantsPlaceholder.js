@@ -4,13 +4,14 @@ import { getPlants, addPlant, delPlant } from '../actions';
 import PlantForm from '../components/PlantForm';
 import PlantsList from './PlantsList';
 
+const userId = localStorage.getItem('userId');
+
 class plantsPlaceholder extends React.Component {
   componentDidMount() {
     this.getWrapper();
   }
 
   getWrapper = () => {
-    const userId = localStorage.getItem('userId');
     this.props.getPlants(userId);
   };
 
@@ -18,7 +19,7 @@ class plantsPlaceholder extends React.Component {
     return (
       <div className="plants-page">
         <h3>Welcome to your Plants Page</h3>
-        <PlantForm userId={this.props.userId} addPlant={this.props.addPlant} />
+        <PlantForm userId={userId} addPlant={this.props.addPlant} />
         <PlantsList plants={this.props.plants} delPlant={this.props.delPlant} />
       </div>
     );
