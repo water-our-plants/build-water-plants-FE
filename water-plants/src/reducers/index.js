@@ -13,7 +13,10 @@ import {
   GET_PLANTS_FAIL,
   DEL_PLANT_START,
   DEL_PLANT_SUCCESS,
-  DEL_PLANT_FAIL
+  DEL_PLANT_FAIL,
+  UPD_SCHED_START,
+  UPD_SCHED_SUCCESS,
+  UPD_SCHED_FAIL
 } from '../actions';
 
 const initialState = {
@@ -24,6 +27,8 @@ const initialState = {
   addingPlant: false,
   updatingUser: false,
   deletingPlant: false,
+  deletingSchedule: false,
+  schedule: [],
   error: null,
   user: {},
   isLoading: false
@@ -134,6 +139,28 @@ const rootReducer = (state = initialState, action) => {
         error: action.payload
       };
     }
+    case UPD_SCHED_START: {
+      return {
+        ...state,
+        updatingSchedule: true,
+        error: ''
+      };
+    }
+    case UPD_SCHED_SUCCESS: {
+      return {
+        ...state,
+        updatingSchedule: false,
+        plants: action.payload
+      };
+    }
+    case UPD_SCHED_FAIL: {
+      return {
+        ...state,
+        updatingSchedule: false,
+        error: action.payload
+      };
+    }
+
     default:
       return state;
   }
