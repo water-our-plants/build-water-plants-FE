@@ -19,6 +19,7 @@ const PlantsList = props => {
             plant={plant}
             delPlant={props.delPlant}
             updateSchedule={props.updateSchedule}
+            getPlants={props.getPlants}
           />
         );
       })}
