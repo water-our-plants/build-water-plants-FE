@@ -14,7 +14,13 @@ const PlantsList = props => {
     <PlantWrapper>
       {props.plants.map(plant => {
         return (
-          <PlantCard key={plant.id} plant={plant} delPlant={props.delPlant} />
+          <PlantCard
+            key={plant.id}
+            plant={plant}
+            delPlant={props.delPlant}
+            updateSchedule={props.updateSchedule}
+            getPlants={props.getPlants}
+          />
         );
       })}
     </PlantWrapper>

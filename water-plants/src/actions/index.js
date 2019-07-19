@@ -25,6 +25,10 @@ export const DEL_PLANT_START = "DEL_PLANT_START";
 export const DEL_PLANT_SUCCESS = "DEL_PLANT_SUCCESS";
 export const DEL_PLANT_FAIL = "DEL_PLANT_FAIL";
 
+export const UPD_SCHED_START = 'UPD_SCHED_START';
+export const UPD_SCHED_SUCCESS = 'UPD_SCHED_SUCCESS';
+export const UPD_SCHED_FAIL = 'UPD_SCHED_FAIL';
+
 export const registerUser = registration => dispatch => {
   dispatch({ type: REGISTER_USER_START });
   return axios
@@ -112,20 +116,35 @@ export const getPlants = userId => dispatch => {
     });
 };
 
-export const delPlant = (plantId, user) => dispatch => {
+export const delPlant = (plantId, userId) => dispatch => {
   dispatch({ type: DEL_PLANT_START });
   axiosWithAuth()
     .delete(
       `https://be-water-my-plants.herokuapp.com/api/deletePlant/${plantId}`,
-      user
+      userId
     )
     .then(res => {
-      console.log("delete successful");
-      console.log(user);
+      console.log('delete successful');
+      console.log(res);
       dispatch({ type: DEL_PLANT_SUCCESS, payload: res.data });
     })
     .catch(err => {
       console.log(err);
       dispatch({ type: DEL_PLANT_FAIL, payload: err.response });
+    });
+};
+
+export const updateSchedule = (userId, updatePlant) => dispatch => {
+  dispatch({ type: UPD_SCHED_START });
+  axiosWithAuth()
+    .put(
+      `https://be-water-my-plants.herokuapp.com/api/editPlants/${userId}`,
+      updatePlant
+    )
+    .then(res => {
+      dispatch({ type: UPD_SCHED_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: UPD_SCHED_FAIL, payload: err.response });
     });
 };

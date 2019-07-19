@@ -17,34 +17,133 @@ const ButtonWrapper = styled.div`
   }
 `;
 
-const PlantCard = props => {
-  const userId = localStorage.getItem('userId');
+const Dates = styled.div`
+  margin: 10px;
+  height: 45px;
+  p {
+    margin: 0;
+  }
+`;
 
-  const user = {
-    data: {
-      userId: userId
-    }
+const FormColumn = styled.form`
+  display: flex;
+  flex-direction: column;
+`;
+
+class PlantCard extends React.Component {
+
+  async UpdateWrapper() {
+    await this.handleUpdate();
+    this.props.getPlants(this.props.plant.userId);
+  }
+
+  constructor(props) {
+    super(props);
+
+    
+
+    this.state = {
+      isUpdating: false,
+
+      watering_time: ''
+    };
+  }
+
+  updateToggle = e => {
+    this.setState(prevState => ({
+      isUpdating: !prevState.isUpdating
+    }));
   };
 
-  return (
-    <PlantDiv>
-      <h4>{props.plant.name}</h4>
-      <p>{props.plant.description}</p>
-      <ul>Last Watered: {props.plant.lastWater}</ul>
-      <ul>Watering Reminder: {props.plant.watering_time} </ul>
-      <ButtonWrapper>
-        {/* <button>Schedule</button> */}
-        <button
+  handleChange = e => {
+    e.persist();
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  
+    
+
+  handleUpdate = e => {
+    const { watering_time } = this.state;
+    const {
+      name,
+      description,
+      lastWater,
+      smsDelivered,
+      userId,
+      id
+    } = this.props.plant;
+    const updatePlant = {
+      name,
+      description,
+      watering_time,
+      smsDelivered,
+      lastWater,
+      userId
+    };
+    this.props.updateSchedule(id, updatePlant);
+    
+    this.updateToggle();
+  };
+
+  deleteHandler = (plantId, userId) =>{
+    this.props.delPlant(plantId, userId);
+    this.props.getPlants(userId);
+  }
+
+  render() {
+    return (
+      <PlantDiv>
+        <h4>{this.props.plant.name}</h4>
+        <p>{this.props.plant.description}</p>
+        <Dates>
+          <p>Last Watered:</p>
+          <p>{this.props.plant.lastWater}</p>
+        </Dates>
+
+        {this.state.isUpdating ? (
+          <Dates>
+            <FormColumn>
+              <label>Reminder</label>
+              <input
+                onChange={this.handleChange}
+                placeholder="Water Next..."
+                value={this.state.watering_time}
+                name="watering_time"
+                type="date"
+              />
+            </FormColumn>
+          </Dates>
+        ) : (
+          <Dates>
+            <p>Watering Reminder:</p>
+
+            <p>{this.props.plant.watering_time}</p>
+          </Dates>
+        )}
+
+        <ButtonWrapper>
+          <button
           onClick={e =>
             window.confirm('Are you sure you wish to delete the plant?') &&
-            props.delPlant(props.plant.id, user)
+            this.deleteHandler(this.props.plant.id, this.props.plant.userId)
           }
-        >
-          Delete
-        </button>
-      </ButtonWrapper>
-    </PlantDiv>
-  );
-};
+          >
+            Delete
+          </button>
+          {this.state.isUpdating ? (
+            <button onClick={() => {
+              this.UpdateWrapper();
+              
+                
+            }}>Supdate</button>
+          ) : (
+            <button onClick={() => this.updateToggle()}>Update</button>
+          )}
+        </ButtonWrapper>
+      </PlantDiv>
+    );
+  }
+}
 
 export default PlantCard;
