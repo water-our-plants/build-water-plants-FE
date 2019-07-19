@@ -44,7 +44,7 @@ export const registerUser = registration => dispatch => {
 
 export const editUser = user => dispatch => {
   dispatch({ type: EDIT_USER_START });
-  return axios
+  return axiosWithAuth()
     .put(`https://be-water-my-plants.herokuapp.com/api/editUser/${user.id}`, {
       username: user.username,
       phoneNumber: user.phoneNumber,
@@ -52,7 +52,7 @@ export const editUser = user => dispatch => {
     })
     .then(res => {
       console.log(res);
-      dispatch({ type: EDIT_USER_SUCCESS, payload: res.data });
+      dispatch({ type: EDIT_USER_SUCCESS, payload: user });
     })
     .catch(err => {
       console.log(err);
@@ -70,8 +70,9 @@ export const login = creds => dispatch => {
   return axios
     .post("https://be-water-my-plants.herokuapp.com/api/login", creds)
     .then(res => {
-      console.log("login returned:", res);
+      console.log("login returned:", res.data);
       localStorage.setItem("token", res.data.token);
+      localStorage.setItem("userId", res.data.id);
       dispatch({ type: LOGIN_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -102,7 +103,7 @@ export const getPlants = userId => dispatch => {
   axiosWithAuth()
     .get(`https://be-water-my-plants.herokuapp.com/api/getPlants/${userId}`)
     .then(res => {
-      console.log(res);
+      console.log("returned this data", res);
       dispatch({ type: GET_PLANTS_SUCCESS, payload: res.data });
     })
     .catch(err => {

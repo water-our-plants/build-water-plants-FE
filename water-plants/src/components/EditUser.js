@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { editUser } from "../actions";
 
 class EditUser extends React.Component {
-  state = { user: this.props.user  };
+  state = { user: this.props.user };
 
   handleChange = e => {
     this.setState({
@@ -30,7 +30,7 @@ class EditUser extends React.Component {
         <form>
           <input
             name="username"
-            placeholder="Username..."
+            placeholder={this.props.user.username}
             type="text"
             value={this.state.user.username}
             onChange={this.handleChange}
@@ -44,13 +44,13 @@ class EditUser extends React.Component {
           />
           <input
             name="phoneNumber"
-            placeholder="Phone number..."
+            placeholder={this.props.user.phoneNumber}
             type="text"
             value={this.state.user.phoneNumber}
             onChange={this.handleChange}
           />
           <button type="button" onClick={this.handleUserEdit}>
-            Register
+            Update Info
           </button>
         </form>
       </>
@@ -58,7 +58,7 @@ class EditUser extends React.Component {
   }
 }
 
-const mapStateToProps = ({user}) => ({
+const mapStateToProps = ({ user }) => ({
   user
 });
 
