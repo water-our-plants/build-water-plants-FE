@@ -4,26 +4,33 @@ import { getPlants, addPlant, delPlant, updateSchedule } from '../actions';
 import PlantForm from '../components/PlantForm';
 import PlantsList from './PlantsList';
 
-const userId = localStorage.getItem('userId');
 
 class plantsPlaceholder extends React.Component {
-  componentDidMount() {
-    this.getWrapper();
+  async componentDidMount() {
+    const userId = await localStorage.getItem('userId');
+    console.log(userId);
+    this.props.getPlants(userId);
+    this.setState({ userId: userId });
   }
 
-  getWrapper = () => {
-    this.props.getPlants(userId);
-  };
+  state = {
+    userId: ''
+  }
+
+  // getWrapper = () => {
+  //   this.props.getPlants(userId);
+  // };
 
   render() {
     return (
-      <div className="plants-page">
+      <div className="plants-page">s
         <h3>Welcome to your Plants Page</h3>
-        <PlantForm userId={userId} addPlant={this.props.addPlant} />
+        <PlantForm userId={this.state.userId} addPlant={this.props.addPlant} />
         <PlantsList
           plants={this.props.plants}
           delPlant={this.props.delPlant}
           updateSchedule={this.props.updateSchedule}
+          getPlants={this.props.getPlants}
         />
       </div>
     );

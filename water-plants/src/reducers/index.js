@@ -149,7 +149,6 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         updatingSchedule: false,
-        plants: action.payload
       };
     }
     case UPD_SCHED_FAIL: {
