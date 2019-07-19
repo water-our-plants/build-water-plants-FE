@@ -23,7 +23,7 @@ class plantsPlaceholder extends React.Component {
 
   render() {
     return (
-      <div className="plants-page">s
+      <div className="plants-page">
         <h3>Welcome to your Plants Page</h3>
         <h2>{this.props.username} {this.props.userId}</h2>
         <PlantForm userId={this.state.userId} addPlant={this.props.addPlant} />

@@ -35,7 +35,6 @@ class PlantCard extends React.Component {
   async UpdateWrapper() {
     await this.handleUpdate();
     this.props.getPlants(this.props.plant.userId);
-    this.props.updateToggle();
   }
 
   constructor(props) {
@@ -83,7 +82,7 @@ class PlantCard extends React.Component {
       userId
     };
     this.props.updateSchedule(id, updatePlant);
-    this.props.getPlants(userId);
+    
     this.updateToggle();
   };
 
@@ -135,6 +134,7 @@ class PlantCard extends React.Component {
           {this.state.isUpdating ? (
             <button onClick={() => {
               this.UpdateWrapper();
+              
                 
             }}>Supdate</button>
           ) : (

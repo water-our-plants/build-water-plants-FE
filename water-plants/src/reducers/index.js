@@ -171,7 +171,7 @@ const rootReducer = (state = initialState, action) => {
     case UPD_SCHED_SUCCESS: {
       return {
         ...state,
-        updatingSchedule: false,
+        updatingSchedule: false
       };
     }
     case UPD_SCHED_FAIL: {
