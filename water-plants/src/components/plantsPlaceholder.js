@@ -25,6 +25,7 @@ class plantsPlaceholder extends React.Component {
     return (
       <div className="plants-page">s
         <h3>Welcome to your Plants Page</h3>
+        <h2>{this.props.username} {this.props.userId}</h2>
         <PlantForm userId={this.state.userId} addPlant={this.props.addPlant} />
         <PlantsList
           plants={this.props.plants}
