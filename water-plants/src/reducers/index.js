@@ -23,7 +23,7 @@ import {
 } from '../actions';
 
 const initialState = {
-  userId: "",
+  userId: '',
   plants: [],
   loggingIn: false,
   fetchingPlants: false,
@@ -42,7 +42,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         loggingIn: true,
-        error: ""
+        error: ''
       };
     }
     case LOGIN_SUCCESS: {
@@ -123,7 +123,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         addingPlant: true,
-        error: ""
+        error: ''
       };
     }
     case ADD_PLANT_SUCCESS: {
@@ -144,14 +144,14 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         deletingPlant: true,
-        error: ""
+        error: ''
       };
     }
     case DEL_PLANT_SUCCESS: {
       return {
         ...state,
-        deletingPlant: false,
-        plants: action.payload
+        deletingPlant: false
+        // plants: action.payload
       };
     }
     case DEL_PLANT_FAIL: {
