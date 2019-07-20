@@ -31,16 +31,8 @@ const FormColumn = styled.form`
 `;
 
 class PlantCard extends React.Component {
-
-  async UpdateWrapper() {
-    await this.handleUpdate();
-    this.props.getPlants(this.props.plant.userId);
-  }
-
   constructor(props) {
     super(props);
-
-    
 
     this.state = {
       isUpdating: false,
@@ -60,9 +52,6 @@ class PlantCard extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  
-    
-
   handleUpdate = e => {
     const { watering_time } = this.state;
     const {
@@ -81,15 +70,14 @@ class PlantCard extends React.Component {
       lastWater,
       userId
     };
-    this.props.updateSchedule(id, updatePlant);
-    
+    this.props.updateSchedule(id, userId, updatePlant);
+
     this.updateToggle();
   };
 
-  deleteHandler = (plantId, userId) =>{
+  deleteHandler = (plantId, userId) => {
     this.props.delPlant(plantId, userId);
-    this.props.getPlants(userId);
-  }
+  };
 
   render() {
     return (
@@ -124,19 +112,21 @@ class PlantCard extends React.Component {
 
         <ButtonWrapper>
           <button
-          onClick={e =>
-            window.confirm('Are you sure you wish to delete the plant?') &&
-            this.deleteHandler(this.props.plant.id, this.props.plant.userId)
-          }
+            onClick={e =>
+              window.confirm('Are you sure you wish to delete the plant?') &&
+              this.deleteHandler(this.props.plant.id, this.props.plant.userId)
+            }
           >
             Delete
           </button>
           {this.state.isUpdating ? (
-            <button onClick={() => {
-              this.UpdateWrapper();
-              
-                
-            }}>Supdate</button>
+            <button
+              onClick={() => {
+                this.handleUpdate();
+              }}
+            >
+              Supdate
+            </button>
           ) : (
             <button onClick={() => this.updateToggle()}>Update</button>
           )}
