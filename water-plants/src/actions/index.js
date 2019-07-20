@@ -159,9 +159,9 @@ export const updateSchedule = (plantId, userId, updatePlant) => dispatch => {
       console.log('fetching plants');
       axiosWithAuth()
         .get(`https://be-water-my-plants.herokuapp.com/api/getPlants/${userId}`)
-        .then(fetch => {
-          console.log('returned this data', fetch);
-          dispatch({ type: GET_PLANTS_SUCCESS, payload: fetch.data });
+        .then(res => {
+          console.log('returned this data', res);
+          dispatch({ type: GET_PLANTS_SUCCESS, payload: res.data });
         })
         .catch(err => {
           console.log(err);
