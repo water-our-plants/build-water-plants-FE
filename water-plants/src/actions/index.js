@@ -155,6 +155,7 @@ export const updateSchedule = (plantId, userId, updatePlant) => dispatch => {
     )
     .then(res => {
       dispatch({ type: UPD_SCHED_SUCCESS });
+      console.log('update complete');
       dispatch({ type: GET_PLANTS_START });
       console.log('fetching plants');
       axiosWithAuth()
