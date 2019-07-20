@@ -146,11 +146,11 @@ export const delPlant = (plantId, userId) => dispatch => {
     });
 };
 
-export const updateSchedule = (userId, updatePlant) => dispatch => {
+export const updateSchedule = (plantId, userId, updatePlant) => dispatch => {
   dispatch({ type: UPD_SCHED_START });
   axiosWithAuth()
     .put(
-      `https://be-water-my-plants.herokuapp.com/api/editPlants/${userId}`,
+      `https://be-water-my-plants.herokuapp.com/api/editPlants/${plantId}`,
       updatePlant
     )
     .then(res => {
@@ -159,9 +159,9 @@ export const updateSchedule = (userId, updatePlant) => dispatch => {
       console.log('fetching plants');
       axiosWithAuth()
         .get(`https://be-water-my-plants.herokuapp.com/api/getPlants/${userId}`)
-        .then(res => {
-          console.log('returned this data', res);
-          dispatch({ type: GET_PLANTS_SUCCESS, payload: res.data });
+        .then(fetch => {
+          console.log('returned this data', fetch);
+          dispatch({ type: GET_PLANTS_SUCCESS, payload: fetch.data });
         })
         .catch(err => {
           console.log(err);

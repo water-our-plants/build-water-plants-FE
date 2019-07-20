@@ -70,7 +70,7 @@ class PlantCard extends React.Component {
       lastWater,
       userId
     };
-    this.props.updateSchedule(id, updatePlant);
+    this.props.updateSchedule(id, userId, updatePlant);
 
     this.updateToggle();
   };
