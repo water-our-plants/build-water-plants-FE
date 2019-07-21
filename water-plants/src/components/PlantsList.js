@@ -87,7 +87,7 @@ const PlantWrapper = styled.div`
 const PlantsList = props => {
   return (
     <PlantWrapper>
-      <div className="plants-header">Your Plants</div>
+      <div className="plants-header">Your plants</div>
      <div className="plants-body">
        
       {props.plants.map(plant => {

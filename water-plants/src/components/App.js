@@ -11,7 +11,7 @@ import Welcome from "./Welcome";
 import styled from "styled-components";
 
 const NavBar = styled.div`
-  border-bottom: 2px solid darkgrey;
+  /*border-bottom: 2px solid darkgrey;*/
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -30,6 +30,10 @@ const AppWrapper = styled.div`
   padding: 0px 30px;
   h1 {
     align-self: flex-start;
+  }
+  .body {
+    background-color: rgb(244, 244, 244);
+    margin-bottom: 20px;
   }
 `;
 

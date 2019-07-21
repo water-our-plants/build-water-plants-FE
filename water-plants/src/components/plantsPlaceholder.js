@@ -15,7 +15,7 @@ const PlantsContainer = styled.div`
   flex-shrink: 1;
   font-family: "Helvetica Now", "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 18.4px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   min-height: 245px;
   padding-left: 12px;
   padding-right: 12px;

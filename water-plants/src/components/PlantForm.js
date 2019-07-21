@@ -30,7 +30,7 @@ const FormWrapper = styled.form`
   flex-shrink: 1;
   font-family: "Helvetica Now", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
-  height: 288px;
+  height: 293px;
   justify-content: center;
   line-height: 18.4px;
   margin-left: 12px;
