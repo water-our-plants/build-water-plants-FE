@@ -46,7 +46,6 @@ class plantsPlaceholder extends React.Component {
   render() {
     return (
       <PlantsContainer>
-        <h2>{this.props.username} {this.props.userId}</h2>
         <PlantsList
           plants={this.props.plants}
           delPlant={this.props.delPlant}

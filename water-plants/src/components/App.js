@@ -1,15 +1,14 @@
-
-import React, { Component } from 'react';
-import './App.css';
-import { connect } from 'react-redux';
-import { Route, NavLink } from 'react-router-dom';
-import Login from './Login';
-import Register from './Register';
+import React, { Component } from "react";
+import "./App.css";
+import { connect } from "react-redux";
+import { Route, NavLink } from "react-router-dom";
+import Login from "./Login";
+import Register from "./Register";
 import EditUser from "./EditUser";
-import plantsPlaceholder from './plantsPlaceholder';
-import PrivateRoute from './PrivateRoute';
-import Welcome from './Welcome';
-import styled from 'styled-components';
+import plantsPlaceholder from "./plantsPlaceholder";
+import PrivateRoute from "./PrivateRoute";
+import Welcome from "./Welcome";
+import styled from "styled-components";
 
 const NavBar = styled.div`
   display: flex;
@@ -24,23 +23,24 @@ const NavBar = styled.div`
   }
 `;
 
+const AppWrapper = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+`;
+
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <AppWrapper className="app">
         <h1>Water My Plants</h1>
         <h2>{this.props.user.message ? this.props.user.message : ""}</h2>
         <NavBar>
+          <ul>{!this.props.userId && <NavLink to="/login">Login</NavLink>}</ul>
           <ul>
-            {!this.props.userId && <NavLink to="/login">Login</NavLink>}
+            {!this.props.userId && <NavLink to="/register">Register</NavLink>}
           </ul>
-          <ul>
-            {!this.props.userId &&<NavLink to='/register'>Register</NavLink> 
-            }
-          </ul>
-          <ul>
-            {this.props.userId && <NavLink to="/plants">Plants</NavLink>}
-          </ul>
+          <ul>{this.props.userId && <NavLink to="/plants">Plants</NavLink>}</ul>
           <ul>
             {this.props.userId && <NavLink to="/profile">Edit Profile</NavLink>}
           </ul>
@@ -48,10 +48,10 @@ class App extends Component {
         <div className="body" />
         <Route exact path="/" component={Welcome} />
         <Route path="/login" component={Login} />
-         <Route exact path="/register" component={Register} />
+        <Route exact path="/register" component={Register} />
         <Route exact path="/profile" component={EditUser} />
         <PrivateRoute path="/plants" component={plantsPlaceholder} />
-      </div>
+      </AppWrapper>
     );
   }
 }
