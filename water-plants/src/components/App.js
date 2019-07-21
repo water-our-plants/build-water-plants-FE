@@ -11,15 +11,15 @@ import Welcome from "./Welcome";
 import styled from "styled-components";
 
 const NavBar = styled.div`
+  border-bottom: 2px solid darkgrey;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
-  border-bottom: 2px solid darkgrey;
+  justify-content: flex-start;
   padding-right: 5%;
-
+  width: 585px;
   a {
-    text-decoration: none;
     color: black;
+    text-decoration: none;
   }
 `;
 
@@ -27,6 +27,10 @@ const AppWrapper = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
+  padding: 0px 30px;
+  h1 {
+    align-self: flex-start;
+  }
 `;
 
 class App extends Component {
@@ -35,22 +39,37 @@ class App extends Component {
       <AppWrapper className="app">
         <h1>Water My Plants</h1>
         <h2>{this.props.user.message ? this.props.user.message : ""}</h2>
-        <NavBar>
-          <ul>{!this.props.userId && <NavLink to="/login">Login</NavLink>}</ul>
-          <ul>
-            {!this.props.userId && <NavLink to="/register">Register</NavLink>}
-          </ul>
-          <ul>{this.props.userId && <NavLink to="/plants">Plants</NavLink>}</ul>
-          <ul>
-            {this.props.userId && <NavLink to="/profile">Edit Profile</NavLink>}
-          </ul>
+        <NavBar className="navBar">
+          {!this.props.userId && (
+            <ul>
+              {" "}
+              <NavLink to="/login">Login</NavLink>
+            </ul>
+          )}
+          {!this.props.userId && (
+            <ul>
+              <NavLink to="/register">Register</NavLink>
+            </ul>
+          )}
+          {this.props.userId && (
+            <ul>
+              {" "}
+              <NavLink to="/plants">Plants</NavLink>
+            </ul>
+          )}
+          {this.props.userId && (
+            <ul>
+              <NavLink to="/profile">Edit Profile</NavLink>
+            </ul>
+          )}
         </NavBar>
-        <div className="body" />
-        <Route exact path="/" component={Welcome} />
-        <Route path="/login" component={Login} />
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/profile" component={EditUser} />
-        <PrivateRoute path="/plants" component={plantsPlaceholder} />
+        <div className="body">
+          <Route exact path="/" component={Welcome} />
+          <Route path="/login" component={Login} />
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/profile" component={EditUser} />
+          <PrivateRoute path="/plants" component={plantsPlaceholder} />
+        </div>
       </AppWrapper>
     );
   }

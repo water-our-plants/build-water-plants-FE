@@ -30,7 +30,7 @@ const FormWrapper = styled.form`
   flex-shrink: 1;
   font-family: "Helvetica Now", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
-  height: 265px;
+  height: 288px;
   justify-content: center;
   line-height: 18.4px;
   margin-left: 12px;
@@ -67,6 +67,7 @@ const FormWrapper = styled.form`
   }
   .plant-form {
     align-items: flex-start;
+    align-self: center;
     border-bottom-color: rgb(228, 228, 228);
     border-bottom-style: solid;
     border-bottom-width: 0px;
