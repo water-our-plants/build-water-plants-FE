@@ -161,7 +161,7 @@ class PlantForm extends React.Component {
 
         <div className="plant-form">
           <div className="input">
-            <label for="name">Plant Name </label>
+            <label>Plant Name </label>
             <input
               onChange={this.handleChange}
               placeholder="Name..."
@@ -170,9 +170,10 @@ class PlantForm extends React.Component {
               id="name"
               type="text"
             />
+
           </div>
-          <div class="input">
-            <label for="description">Description</label>
+          <div className="input">
+            <label>Description</label>
             <input
               onChange={this.handleChange}
               placeholder="Plant type..."
@@ -181,8 +182,8 @@ class PlantForm extends React.Component {
               type="text"
             />
           </div>
-          <div class="input">
-            <label for="lastWater">Last Watered</label>
+          <div className="input">
+            <label>Last Watered</label>
 
             <input
               onChange={this.handleChange}
@@ -192,8 +193,8 @@ class PlantForm extends React.Component {
               type="date"
             />
           </div>
-          <div class="input">
-            <label for="watering_time">Reminder</label>
+          <div className="input">
+            <label>Reminder</label>
             <input
               onChange={this.handleChange}
               placeholder="Water Next..."
@@ -205,7 +206,7 @@ class PlantForm extends React.Component {
           <button onClick={this.handleSubmit}>Add Plant</button>
         </div>
       </FormWrapper>
-    );
+    )
   }
 }
 

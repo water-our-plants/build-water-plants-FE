@@ -16,17 +16,21 @@ import {
   GET_PLANTS_FAIL,
   DEL_PLANT_START,
   DEL_PLANT_SUCCESS,
-  DEL_PLANT_FAIL
-} from "../actions";
+  DEL_PLANT_FAIL,
+  UPD_SCHED_START,
+  UPD_SCHED_SUCCESS,
+  UPD_SCHED_FAIL
+} from '../actions';
 
 const initialState = {
-  userId: "",
+  userId: '',
   plants: [],
   loggingIn: false,
   fetchingPlants: false,
   addingPlant: false,
   updatingUser: false,
   deletingPlant: false,
+  deletingSchedule: false,
   error: null,
   user: {},
   isLoading: false
@@ -38,7 +42,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         loggingIn: true,
-        error: ""
+        error: ''
       };
     }
     case LOGIN_SUCCESS: {
@@ -119,7 +123,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         addingPlant: true,
-        error: ""
+        error: ''
       };
     }
     case ADD_PLANT_SUCCESS: {
@@ -140,14 +144,14 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         deletingPlant: true,
-        error: ""
+        error: ''
       };
     }
     case DEL_PLANT_SUCCESS: {
       return {
         ...state,
-        deletingPlant: false,
-        plants: action.payload
+        deletingPlant: false
+        // plants: action.payload
       };
     }
     case DEL_PLANT_FAIL: {
@@ -157,6 +161,27 @@ const rootReducer = (state = initialState, action) => {
         error: action.payload
       };
     }
+    case UPD_SCHED_START: {
+      return {
+        ...state,
+        updatingSchedule: true,
+        error: ''
+      };
+    }
+    case UPD_SCHED_SUCCESS: {
+      return {
+        ...state,
+        updatingSchedule: false
+      };
+    }
+    case UPD_SCHED_FAIL: {
+      return {
+        ...state,
+        updatingSchedule: false,
+        error: action.payload
+      };
+    }
+
     default:
       return state;
   }

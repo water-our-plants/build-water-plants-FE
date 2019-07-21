@@ -1,6 +1,7 @@
-import React from "react";
-import { connect } from "react-redux";
-import { getPlants, addPlant, delPlant } from "../actions";
+
+import React from 'react';
+import { connect } from 'react-redux';
+import { getPlants, addPlant, delPlant, updateSchedule } from '../actions';
 import PlantForm from "../components/PlantForm";
 import PlantsList from "./PlantsList";
 import styled from "styled-components";
@@ -25,17 +26,36 @@ const PlantsContainer = styled.div`
 
 const userId = localStorage.getItem("userId");
 
+
 class plantsPlaceholder extends React.Component {
-  componentDidMount() {
+  async componentDidMount() {
+    const userId = await localStorage.getItem('userId');
+    console.log(userId);
     this.props.getPlants(userId);
+    this.setState({ userId: userId });
   }
+
+  state = {
+    userId: ''
+  }
+
+  // getWrapper = () => {
+  //   this.props.getPlants(userId);
+  // };
 
   render() {
     return (
       <PlantsContainer>
-        <PlantsList plants={this.props.plants} delPlant={this.props.delPlant} />
+        <h2>{this.props.username} {this.props.userId}</h2>
+        <PlantsList
+          plants={this.props.plants}
+          delPlant={this.props.delPlant}
+          updateSchedule={this.props.updateSchedule}
+          getPlants={this.props.getPlants}
+        />
         <PlantForm userId={userId} addPlant={this.props.addPlant} />
       </PlantsContainer>
+
     );
   }
 }
@@ -44,5 +64,5 @@ const mapStateToProps = ({ plants, userId }) => ({ plants, userId });
 
 export default connect(
   mapStateToProps,
-  { getPlants, addPlant, delPlant }
+  { getPlants, addPlant, delPlant, updateSchedule }
 )(plantsPlaceholder);
