@@ -12,27 +12,46 @@ import styled from "styled-components";
 
 const NavBar = styled.div`
   /*border-bottom: 2px solid darkgrey;*/
+
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  padding-right: 5%;
+  padding-bottom: 20px;
   width: 585px;
   a {
     color: black;
     text-decoration: none;
   }
+  ul {
+    padding: 0px 0px;
+    margin: 0px 10px;
+  }
+  ul:first-of-type {
+    margin-left: 0px;
+  }
 `;
 
 const AppWrapper = styled.div`
   align-items: center;
+  background-color: #ebebe9;
   display: flex;
   flex-direction: column;
-  padding: 0px 30px;
-  h1 {
-    align-self: flex-start;
+  width: 100%;
+  .header {
+    background-color: white;
+    border-top: 4px solid rgb(98, 119, 68);
+
+    margin-top: 5px;
+    padding: 0px 12px;
+    width: 616px;
+
+    h1 {
+      align-self: flex-start;
+      font-size: 18px;
+    }
   }
   .body {
-    background-color: rgb(244, 244, 244);
+    background-color: white;
     margin-bottom: 20px;
   }
 `;
@@ -41,32 +60,34 @@ class App extends Component {
   render() {
     return (
       <AppWrapper className="app">
-        <h1>Water My Plants</h1>
-        <h2>{this.props.user.message ? this.props.user.message : ""}</h2>
-        <NavBar className="navBar">
-          {!this.props.userId && (
-            <ul>
-              {" "}
-              <NavLink to="/login">Login</NavLink>
-            </ul>
-          )}
-          {!this.props.userId && (
-            <ul>
-              <NavLink to="/register">Register</NavLink>
-            </ul>
-          )}
-          {this.props.userId && (
-            <ul>
-              {" "}
-              <NavLink to="/plants">Plants</NavLink>
-            </ul>
-          )}
-          {this.props.userId && (
-            <ul>
-              <NavLink to="/profile">Edit Profile</NavLink>
-            </ul>
-          )}
-        </NavBar>
+        <div className="header">
+          <h1>Water My Plants</h1>
+          {/*<h2>{this.props.user.message ? this.props.user.message : ""}</h2>*/}
+          <NavBar className="navBar">
+            {!this.props.userId && (
+              <ul>
+                {" "}
+                <NavLink to="/login">Login</NavLink>
+              </ul>
+            )}
+            {!this.props.userId && (
+              <ul>
+                <NavLink to="/register">Register</NavLink>
+              </ul>
+            )}
+            {this.props.userId && (
+              <ul>
+                {" "}
+                <NavLink to="/plants">Plants</NavLink>
+              </ul>
+            )}
+            {this.props.userId && (
+              <ul>
+                <NavLink to="/profile">Edit Profile</NavLink>
+              </ul>
+            )}
+          </NavBar>
+        </div>
         <div className="body">
           <Route exact path="/" component={Welcome} />
           <Route path="/login" component={Login} />

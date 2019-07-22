@@ -30,7 +30,7 @@ const FormWrapper = styled.form`
   flex-shrink: 1;
   font-family: "Helvetica Now", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
-  height: 293px;
+  height: 313px;
   justify-content: center;
   line-height: 18.4px;
   margin-left: 12px;
@@ -98,14 +98,19 @@ const FormWrapper = styled.form`
     user-select: none;
     width: 278px;
     button {
+      align-self: center;
       height: 42px;
       margin-top: 10px;
       width: 208px;
     }
     .input {
+      align-self: center;
       display: flex;
       flex-direction: column;
+      font-size: 14px;
+      margin-bottom: 5px;
       text-align: left;
+      width: 208px;
     }
   }
 `;
