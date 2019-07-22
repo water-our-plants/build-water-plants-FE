@@ -1,19 +1,61 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const PlantDiv = styled.div`
-  border: 1px solid black;
-  border-radius: 10px;
-  width: 30%;
+  align-items: flex-start;
+  border-bottom-color: rgb(228, 228, 228);
+  border-bottom-style: solid;
+  border-bottom-width: 0px;
+  box-shadow: rgba(0, 64, 128, 0.086) 0px 3px 10px 0px;
+  box-sizing: border-box;
+  color: rgb(54, 54, 54);
+  cursor: default;
+  display: flex;
+
+  flex-basis: 0%;
+  flex-direction: column;
+  flex-grow: 0;
+  flex-shrink: 1;
+
+  font-family: "Helvetica Now", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  /*height: 42px;*/
+  justify-self: center;
+  line-height: 18.4px;
+  margin-bottom: 10px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 0px;
+  padding-bottom: 12px;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 12px;
+  text-size-adjust: 100%;
+  user-select: none;
+  width: 278px;
+  h4 {
+    align-self: center;
+    border-bottom-color: rgb(228, 228, 228);
+    border-bottom-style: solid;
+    color: rgb(98, 119, 68);
+    text-align: center;
+    width: 264px;
+  }
+  p {
+    justify-self: flex-end;
+    text-align: left;
+  }
 `;
 
 const ButtonWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+  align-self: center;
+  display: block;
+  width: 278px;
 
   button {
+    height: 42px;
     margin: 10px 20px;
+    width: 208px;
   }
 `;
 
@@ -79,12 +121,12 @@ class PlantCard extends React.Component {
     this.props.delPlant(plantId, userId);
   };
 
-  render() {
-    return (
-      <PlantDiv>
-        <h4>{this.props.plant.name}</h4>
-        <p>{this.props.plant.description}</p>
-        <Dates>
+  render(){
+  return (
+    <PlantDiv>
+      <h4>{this.props.plant.name}</h4>
+      <p>{this.props.plant.description}</p>
+      <Dates>
           <p>Last Watered:</p>
           <p>{this.props.plant.lastWater}</p>
         </Dates>
@@ -109,17 +151,17 @@ class PlantCard extends React.Component {
             <p>{this.props.plant.watering_time}</p>
           </Dates>
         )}
-
-        <ButtonWrapper>
-          <button
-            onClick={e =>
-              window.confirm('Are you sure you wish to delete the plant?') &&
-              this.deleteHandler(this.props.plant.id, this.props.plant.userId)
-            }
-          >
-            Delete
-          </button>
-          {this.state.isUpdating ? (
+      <ButtonWrapper>
+        {/* <button>Schedule</button> */}
+        <button
+          onClick={e =>
+            window.confirm("Are you sure you wish to delete the plant?") &&
+            this.props.delPlant(this.props.plant.id, this.props.user)
+          }
+        >
+          Delete
+        </button>
+        {this.state.isUpdating ? (
             <button
               onClick={() => {
                 this.handleUpdate();
@@ -130,10 +172,11 @@ class PlantCard extends React.Component {
           ) : (
             <button onClick={() => this.updateToggle()}>Update</button>
           )}
-        </ButtonWrapper>
-      </PlantDiv>
-    );
-  }
+      </ButtonWrapper>
+    </PlantDiv>
+  );
 }
+}
+
 
 export default PlantCard;
