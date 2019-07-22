@@ -37,6 +37,7 @@ const PlantDiv = styled.div`
     align-self: center;
     border-bottom-color: rgb(228, 228, 228);
     border-bottom-style: solid;
+    color: rgb(98, 119, 68);
     text-align: center;
     width: 264px;
   }

@@ -9,6 +9,8 @@ import plantsPlaceholder from "./plantsPlaceholder";
 import PrivateRoute from "./PrivateRoute";
 import Welcome from "./Welcome";
 import styled from "styled-components";
+import profileIcon from "../resources/plant1.svg";
+import bgImage from "../resources/bg1.jpg";
 
 const NavBar = styled.div`
   /*border-bottom: 2px solid darkgrey;*/
@@ -18,10 +20,7 @@ const NavBar = styled.div`
   justify-content: flex-start;
   padding-bottom: 20px;
   width: 585px;
-  a {
-    color: black;
-    text-decoration: none;
-  }
+
   ul {
     padding: 0px 0px;
     margin: 0px 10px;
@@ -34,9 +33,11 @@ const NavBar = styled.div`
 const AppWrapper = styled.div`
   align-items: center;
   background-color: #ebebe9;
+  background-image: url(${bgImage});
   display: flex;
   flex-direction: column;
   width: 100%;
+  -webkit-appearance: none;
   .header {
     background-color: white;
     border-top: 4px solid rgb(98, 119, 68);
@@ -44,10 +45,30 @@ const AppWrapper = styled.div`
     margin-top: 5px;
     padding: 0px 12px;
     width: 616px;
-
+    a {
+      color: black;
+      text-decoration: none;
+    }
     h1 {
       align-self: flex-start;
-      font-size: 18px;
+    }
+    .header-top {
+      align-content: flex-start;
+      flex-wrap: wrap;
+      height: 45px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      .profile-icon {
+        width: 24px;
+        height: 24px;
+      }
+      .title {
+        font-size: 18px;
+      }
+      .header-top-name {
+        align-self: flex-end;
+      }
     }
   }
   .body {
@@ -56,41 +77,55 @@ const AppWrapper = styled.div`
   }
 `;
 
+const StyledNavLink = styled(NavLink)`
+  &.active {
+    border-bottom: 2px solid rgb(98, 119, 68);
+  }
+`;
+
 class App extends Component {
   render() {
     return (
       <AppWrapper className="app">
         <div className="header">
-          <h1>Water My Plants</h1>
+          <div className="header-top">
+            <NavLink className="title" to="/">
+              Water My Plants
+            </NavLink>
+            <div>
+              <img className="profile-icon" src={profileIcon} />
+              <div className="header-top-name">{this.props.user.username}</div>
+            </div>
+          </div>
           {/*<h2>{this.props.user.message ? this.props.user.message : ""}</h2>*/}
           <NavBar className="navBar">
             {!this.props.userId && (
               <ul>
                 {" "}
-                <NavLink to="/login">Login</NavLink>
+                <StyledNavLink to="/login">Login</StyledNavLink>
               </ul>
             )}
             {!this.props.userId && (
               <ul>
-                <NavLink to="/register">Register</NavLink>
+                <StyledNavLink to="/register">Register</StyledNavLink>
               </ul>
             )}
             {this.props.userId && (
               <ul>
                 {" "}
-                <NavLink to="/plants">Plants</NavLink>
+                <StyledNavLink to="/plants">Plants</StyledNavLink>
               </ul>
             )}
             {this.props.userId && (
               <ul>
-                <NavLink to="/profile">Edit Profile</NavLink>
+                <StyledNavLink to="/profile">Edit Profile</StyledNavLink>
               </ul>
             )}
           </NavBar>
         </div>
         <div className="body">
           <Route exact path="/" component={Welcome} />
-          <Route path="/login" component={Login} />
+          <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/profile" component={EditUser} />
           <PrivateRoute path="/plants" component={plantsPlaceholder} />

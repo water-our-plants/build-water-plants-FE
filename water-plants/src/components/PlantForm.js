@@ -52,10 +52,10 @@ const FormWrapper = styled.form`
     font-weight: 500;
     height: 42px;
     line-height: 18.4px;
-    margin-bottom: 0px;
+    margin-bottom: 12px;
     margin-left: 0px;
     margin-right: 0px;
-    margin-top: 0px;
+    margin-top: 13px;
     padding-bottom: 12px;
     padding-left: 12px;
     padding-right: 12px;
