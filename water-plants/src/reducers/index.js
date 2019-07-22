@@ -63,6 +63,8 @@ const rootReducer = (state = initialState, action) => {
     case REGISTER_USER_SUCCESS: {
       return {
         ...state,
+        userId: action.payload.id,
+
         isLoading: false
       };
     }
