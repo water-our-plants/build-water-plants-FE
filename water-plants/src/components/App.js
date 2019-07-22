@@ -63,11 +63,15 @@ const AppWrapper = styled.div`
         width: 24px;
         height: 24px;
       }
-      .title {
-        font-size: 18px;
-      }
-      .header-top-name {
-        align-self: flex-end;
+      .profile-name {
+        display: flex;
+        flex-direction: column;
+        .title {
+          font-size: 18px;
+        }
+        .header-top-name {
+          align-self: flex-end;
+        }
       }
     }
   }
@@ -92,7 +96,7 @@ class App extends Component {
             <NavLink className="title" to="/">
               Water My Plants
             </NavLink>
-            <div>
+            <div className="profile-name">
               <img className="profile-icon" src={profileIcon} />
               <div className="header-top-name">{this.props.user.username}</div>
             </div>
