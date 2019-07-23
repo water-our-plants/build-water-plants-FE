@@ -35,6 +35,8 @@ export const registerUser = registration => dispatch => {
     .post(`https://be-water-my-plants.herokuapp.com/api/register`, registration)
     .then(res => {
       console.log(res);
+      localStorage.setItem('token', res.data.token);
+      localStorage.setItem('userId', res.data.id);
       dispatch({ type: REGISTER_USER_SUCCESS, payload: res.data });
     })
     .catch(err => {

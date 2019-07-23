@@ -1,10 +1,10 @@
-import React from "react";
-import axios from "axios";
-import thunk from "redux-thunk";
-import styled from "styled-components";
-import { connect } from "react-redux";
+import React from 'react';
+import axios from 'axios';
+import thunk from 'redux-thunk';
+import styled from 'styled-components';
+import { connect } from 'react-redux';
 
-import { registerUser } from "../actions";
+import { registerUser } from '../actions';
 
 const RegistrationContainer = styled.div`
   box-sizing: border-box;
@@ -13,7 +13,7 @@ const RegistrationContainer = styled.div`
   flex-basis: 0%;
   flex-grow: 1;
   flex-shrink: 1;
-  font-family: "Helvetica Now", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Helvetica Now', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   justify-content: center;
   line-height: 18.4px;
   margin-bottom: 20px;
@@ -33,7 +33,7 @@ const RegistrationContainer = styled.div`
     flex-basis: 0%;
     flex-grow: 0;
     flex-shrink: 1;
-    font-family: "Helvetica Now", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: 'Helvetica Now', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: 500;
     height: 42px;
     line-height: 18.4px;
@@ -78,7 +78,7 @@ const RegistrationForm = styled.div`
   flex-direction: column;
   flex-grow: 1;
   flex-shrink: 1;
-  font-family: "Helvetica Now", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Helvetica Now', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 500;
   min-height: 233px;
   justify-content: center;
@@ -103,7 +103,7 @@ const RegistrationForm = styled.div`
     flex-grow: 0;
     flex-shrink: 1;
 
-    font-family: "Helvetica Now", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: 'Helvetica Now', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: 500;
     /*height: 42px;*/
     justify-self: center;
@@ -139,9 +139,9 @@ const RegistrationForm = styled.div`
 class Register extends React.Component {
   state = {
     registration: {
-      username: "",
-      password: "",
-      phoneNumber: ""
+      username: '',
+      password: '',
+      phoneNumber: ''
     }
   };
 
@@ -156,16 +156,16 @@ class Register extends React.Component {
 
   handleRegistration = e => {
     e.preventDefault();
-    console.log("Registration button clicked");
+    console.log('Registration button clicked');
     this.props
       .registerUser(this.state.registration)
-      .then(() => this.props.history.push("/"));
+      .then(() => this.props.history.push('/'));
   };
 
   createUser = e => {
     e.preventDefault();
     registerUser(this.state.registration);
-    console.log("registered");
+    console.log('registered');
   };
 
   render() {

@@ -167,7 +167,7 @@ class PlantCard extends React.Component {
                 this.handleUpdate();
               }}
             >
-              Supdate
+              Update
             </button>
           ) : (
             <button onClick={() => this.updateToggle()}>Update</button>
