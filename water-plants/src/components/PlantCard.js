@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const PlantDiv = styled.div`
   align-items: flex-start;
@@ -17,7 +17,7 @@ const PlantDiv = styled.div`
   flex-grow: 0;
   flex-shrink: 1;
 
-  font-family: "Helvetica Now", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Helvetica Now', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 500;
   /*height: 42px;*/
   justify-self: center;
@@ -121,12 +121,12 @@ class PlantCard extends React.Component {
     this.props.delPlant(plantId, userId);
   };
 
-  render(){
-  return (
-    <PlantDiv>
-      <h4>{this.props.plant.name}</h4>
-      <p>{this.props.plant.description}</p>
-      <Dates>
+  render() {
+    return (
+      <PlantDiv>
+        <h4>{this.props.plant.name}</h4>
+        <p>{this.props.plant.description}</p>
+        <Dates>
           <p>Last Watered:</p>
           <p>{this.props.plant.lastWater}</p>
         </Dates>
@@ -151,17 +151,17 @@ class PlantCard extends React.Component {
             <p>{this.props.plant.watering_time}</p>
           </Dates>
         )}
-      <ButtonWrapper>
-        {/* <button>Schedule</button> */}
-        <button
-          onClick={e =>
-            window.confirm("Are you sure you wish to delete the plant?") &&
-            this.props.delPlant(this.props.plant.id, this.props.user)
-          }
-        >
-          Delete
-        </button>
-        {this.state.isUpdating ? (
+        <ButtonWrapper>
+          {/* <button>Schedule</button> */}
+          <button
+            onClick={e =>
+              window.confirm('Are you sure you wish to delete the plant?') &&
+              this.props.delPlant(this.props.plant.id, this.props.plant.userId)
+            }
+          >
+            Delete
+          </button>
+          {this.state.isUpdating ? (
             <button
               onClick={() => {
                 this.handleUpdate();
@@ -172,11 +172,10 @@ class PlantCard extends React.Component {
           ) : (
             <button onClick={() => this.updateToggle()}>Update</button>
           )}
-      </ButtonWrapper>
-    </PlantDiv>
-  );
+        </ButtonWrapper>
+      </PlantDiv>
+    );
+  }
 }
-}
-
 
 export default PlantCard;
